@@ -68,7 +68,7 @@ class Player():
     def turn(self, deck):
         end = False
         while (end == False):
-            if self.total < 21:
+            if self.total < 22:
                 choice = input("[H]it [S]tand ").lower()
                 while choice not in ['H','h','S','s']:
                     print("invalid input")
@@ -84,9 +84,7 @@ class Player():
             elif self.total == 21:
                 print("blackjack")
                 break
-            else:
-                print("bust")
-                break
+
 
 class Dealer():
 
@@ -134,14 +132,13 @@ def game():
     print("dealers hand:")
     print(dealer, end='') 
     print("dealers total:" + str(dealer.getValue()))
-    if p1.getValue() > dealer.getValue():
-        print("you win")
-    if dealer.getValue() > 21:
-        print("you win")
-    elif p1.getValue() == dealer.getValue():
-        print("push")
-    else:
-        print("you lose")
+    if p1.getValue() < 22:
+        if dealer.getValue() > 21:
+            print("you win")
+        elif p1.getValue() > dealer.getValue():
+            print("you win")    
+        elif p1.getValue() == dealer.getValue():
+                print("push (it's a tie)")
 
 game()
 
